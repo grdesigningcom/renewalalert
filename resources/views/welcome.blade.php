@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Prod - Renewal alets</title>
+        <title>{{config("app.name")}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -17,7 +17,7 @@
     </head>
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-            <h2><b>{{url("/")}}</b></h2>
+            <h2><b style="background-color:#ef4444; color:#e5e7eb;">{{config("app.name")}}</b><hr><b>{{url("/")}}</b></h2>
         </div>
     </body>
 </html>
