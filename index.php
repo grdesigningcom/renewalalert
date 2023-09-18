@@ -1,1 +1,2 @@
-going on
+<?php
+print("hello");
