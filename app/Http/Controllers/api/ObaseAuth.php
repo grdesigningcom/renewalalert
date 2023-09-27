@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class ObaseAuth extends Controller
 {
     public function createAccount(Request $request){
+
         $validator = Validator::make($request->all(),[
             'name' => 'required',
             'email'=> 'required|email|unique:users',
@@ -31,14 +32,21 @@ class ObaseAuth extends Controller
             return response()->json($response, 401);
         }
         
-
-        $info = array(
-            'name' => "Alex"
-        );
-        
         $requested_data = request()->all();
         $requested_data['password'] = Hash::make($requested_data['password']);
         $user = User::create($requested_data);
+
+        $success['token'] = $user->createToken(time())->plainTextToken;
+        $success['user'] = $user->makeHidden('id','updated_at');
+
+        $response = [
+            'success' => true,
+            'message' => 'Account has been created successfully',
+            'data' => $success
+        ];
+
+        return response()->json($response, 200);
+        
     }
 
     public function login(Request $request){
