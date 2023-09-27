@@ -23,11 +23,6 @@ Route::get('token',function(){
     echo csrf_token();
 });
 
-
-Route::get('sendMail',function(){
-    include 's.php';
-});
-
 // Route Structure
 Route::prefix('v2/Obase/auth')->group(function () {
 
