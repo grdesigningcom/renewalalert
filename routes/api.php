@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('token',function(){
-    echo csrf_token();
-});
-
 // Route Structure
 Route::prefix('v2/Obase/auth')->group(function () {
 
