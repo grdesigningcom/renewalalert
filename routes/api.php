@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ObaseAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('token',function(){
+    echo csrf_token();
+});
+
+
+Route::get('sendMail',function(){
+    include 's.php';
+});
+
+// Route Structure
+Route::prefix('v2/Obase/auth')->group(function () {
+
+    // Create Account
+    Route::post('create-account',[ObaseAuth::class,'createAccount'])->name('create-account');
+    
+    // Login Account
+    Route::post('login',[ObaseAuth::class,'login'])->name('login');
+
+// Auth senctum middlewere
+    Route::middleware(['auth:sanctum'])->group(function () {
+
+    
+    });
+
+    
 });
