@@ -21,17 +21,27 @@ use Illuminate\Support\Facades\Route;
 
 // Route Structure
 Route::prefix('v2/Obase/auth')->group(function () {
+    
+    // Failed API
+    Route::post('login',[ObaseAuth::class,'failed'])->name('login');
 
     // Create Account
-    Route::post('create-account',[ObaseAuth::class,'createAccount'])->name('create-account');
+    Route::post('signup',[ObaseAuth::class,'signup'])->name('create-account');
     
     // Login Account
-    Route::post('login',[ObaseAuth::class,'login'])->name('login');
-
-// Auth senctum middlewere
-    Route::middleware(['auth:sanctum'])->group(function () {
-
+    Route::post('signin',[ObaseAuth::class,'signin'])->name('signin');
     
+    
+    // Auth senctum middlewere
+    Route::middleware(['auth:sanctum'])->group(function () {
+        
+        // Logout Account
+        Route::post('logout',[ObaseAuth::class,'logout'])->name('logout');
+        
+        // check
+
+        Route::post('check',function(){ return response()->json(['success' => true, 'message' => 'Authorized request'], 200) ;});
+
     });
 
     
